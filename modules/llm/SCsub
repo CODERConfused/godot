@@ -1,0 +1,17 @@
+#!/usr/bin/env python
+from misc.utility.scons_hints import *
+
+Import('env')
+Import('env_modules')
+
+env_llm = env_modules.Clone()
+
+module_obj = []
+
+# Add module source files
+env_llm.add_source_files(module_obj, "llm/*.cpp")
+env.modules_sources += module_obj
+
+# Also include provider files explicitly if tool doesn't glob them
+env_llm.add_source_files(module_obj, "llm/providers/*.cpp")
+env.modules_sources += module_obj
